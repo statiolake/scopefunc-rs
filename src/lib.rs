@@ -13,6 +13,14 @@ pub trait ScopeFunc: Sized {
         f(&mut self);
         self
     }
+
+    fn inspect<F>(self, f: F) -> Self
+    where
+        F: FnOnce(&Self),
+    {
+        f(&self);
+        self
+    }
 }
 
 impl<T> ScopeFunc for T {}
